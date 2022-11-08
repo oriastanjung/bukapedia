@@ -62,7 +62,7 @@ const cartSlice = createSlice({
       });
 
       //   state.cart[id].quantity = value;
-      //   console.log(state.cart[id].quantity);
+      //   console.log(state.cart[id].quantity); 
     },
     countTotalPrice: (state) => {
       let sum = 0;

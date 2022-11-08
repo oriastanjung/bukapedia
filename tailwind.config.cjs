@@ -18,6 +18,9 @@ module.exports = {
       },
       fontFamily:{
         "primary" : 'Poppins',
+      },
+      backgroundImage:{
+        'loginImage' : "url('https://i.ibb.co/sCcwNB0/pexels-pixabay-264547.jpg')",
       }
     },
   },

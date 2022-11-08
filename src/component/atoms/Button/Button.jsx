@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Button = ({name, ...rest}) => {
+const Button = ({ handleSubmit , name, className, ...rest}) => {
   return (
-    <button className='bg-navbarcol px-5 py-2  rounded-xl' {...rest}>{name}</button>
+    <button onClick={handleSubmit} className={`bg-navbarcol px-5 py-2 font-bold rounded-xl ${className}`} {...rest}>{name}</button>
   )
 }
 

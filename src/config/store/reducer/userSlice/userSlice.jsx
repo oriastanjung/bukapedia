@@ -1,15 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from 'axios'
-import { useLocation, useNavigate } from "react-router-dom"
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom"
 
 const initialState = {
     users:[]
 }
 
 export const fetchUsers = createAsyncThunk('getusers/all', async (datalogin) =>{
-    let navigate = useNavigate()
-    let location = useLocation()
-    let from = location.state?.from?.pathname || '/'
+
     try{
         const response = await axios.get(`https://fakestoreapi.com/users`)
         let datausers = response.data
@@ -17,7 +15,6 @@ export const fetchUsers = createAsyncThunk('getusers/all', async (datalogin) =>{
         if(logincondition){
             localStorage.setItem('token', logincondition.address.zipcode)
             window.location.reload()
-            navigate(from, {replace: true})
             return console.log('login success');
         } else{
             return console.log("failed");
@@ -35,6 +32,14 @@ const usersSlice = createSlice({
         logout: () => {
             localStorage.removeItem('token')
             window.location.reload()
+        },
+        UnPrivateRoute : () =>{
+           let Isfalse = localStorage.getItem("token")
+       Isfalse ? <Outlet /> : <Navigate to="/login" /> 
+        },
+        PrivateRoute: () =>{
+            let Isfalse = localStorage.getItem("token")
+             Isfalse ? <Navigate  to="/"/> : <Outlet />
         }
     },
     extraReducers(builder){
@@ -45,5 +50,5 @@ const usersSlice = createSlice({
 })
 
 export const getAllUsers = (state) => state.users
-export const {logout} = usersSlice.actions
+export const {logout, PrivateRoute, UnPrivateRoute } = usersSlice.actions
 export default usersSlice.reducer

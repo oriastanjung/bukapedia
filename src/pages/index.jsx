@@ -1,4 +1,5 @@
 import Home from "./Home/Home";
 import Login from "./login/Login";
 import Cart from "./Cart/Cart";
-export { Home, Login, Cart };
+import Chart from "./Chart/Chart";
+export { Home, Login, Cart, Chart };

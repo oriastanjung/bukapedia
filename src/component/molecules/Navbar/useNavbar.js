@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../config/store/reducer/userSlice/userSlice";
 
@@ -18,11 +18,8 @@ const useNavbar = () => {
 
   const handleLogout = () => {
     dispatch(logout())
-    // window.location.reload()
   }
   
-
-
   return { isfalse, isLogin , handleLogout};
 };
 

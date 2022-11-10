@@ -22,7 +22,9 @@ const Navbar = () => {
           <p onClick={handleLogout} className="cursor-pointer">Logout</p>
         </>
       ) : (
-        <p>Login</p>
+        <p>
+          <Link to={"/login"}>Login</Link>
+        </p>
       )}
     </div>
   );

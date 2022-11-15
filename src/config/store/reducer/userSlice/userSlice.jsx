@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from 'axios'
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom"
+import axios from 'axios'
+import swallGlobal from "../../../../utils/Swal/swallGlobal"
 
 const initialState = {
     users:[]
 }
 
 export const fetchUsers = createAsyncThunk('getusers/all', async (datalogin) =>{
+    const {SwalLogin, Swallogout} = swallGlobal()
 
     try{
         const response = await axios.get(`https://fakestoreapi.com/users`)
@@ -14,9 +16,11 @@ export const fetchUsers = createAsyncThunk('getusers/all', async (datalogin) =>{
         const logincondition = datausers.find(item => item.username === datalogin.username && item.password === datalogin.password)
         if(logincondition){
             localStorage.setItem('token', logincondition.address.zipcode)
+            SwalLogin()
             window.location.reload()
             return console.log('login success');
         } else{
+            Swallogout()
             return console.log("failed");
         }
     } catch (error) {
@@ -35,7 +39,7 @@ const usersSlice = createSlice({
         },
         UnPrivateRoute : () =>{
            let Isfalse = localStorage.getItem("token")
-       Isfalse ? <Outlet /> : <Navigate to="/login" /> 
+            Isfalse ? <Outlet /> : <Navigate to="/login" /> 
         },
         PrivateRoute: () =>{
             let Isfalse = localStorage.getItem("token")

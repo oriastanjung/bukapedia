@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchUsers } from '../../config/store/reducer/userSlice/userSlice'
 
 const useLogin = () => {

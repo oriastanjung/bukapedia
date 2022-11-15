@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavbar } from "./useNavbar";
 import { Link } from "react-router-dom";
+
 const Navbar = () => {
   const { isfalse, isLogin, handleLogout } = useNavbar();
 
@@ -11,7 +12,7 @@ const Navbar = () => {
       }`}
     >
       <h1 className="font-bold">Bukapedia</h1>
-      <p>
+      <p className="cursor-pointer">
         <Link to={"/"}>Home</Link>
       </p>
       {isLogin ? (

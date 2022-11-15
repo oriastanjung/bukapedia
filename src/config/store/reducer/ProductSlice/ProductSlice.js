@@ -14,10 +14,13 @@ export const fetchProduct = createAsyncThunk('product/all', async() =>{
     }
 })
 
+
+
 const productSlice = createSlice({
     name : 'productsall',
     initialState,
-    reducers: {},
+    reducers: {
+    },
     extraReducers(builder){
         builder.addCase(fetchProduct.fulfilled, (state, action)=>{
             state.products = action.payload

@@ -1,7 +1,7 @@
 import React from "react";
 import {Route,  Routes } from "react-router-dom";
 import { Navbar } from "./component/molecules";
-import { Home,  Login,  Cart } from "./pages";
+import { Home,  Login,  Cart, HomeAdmin } from "./pages";
 import {ProtectRoute} from './utils/PrivateRoute/PrivateRoute'
 function App() {
 
@@ -16,6 +16,7 @@ function App() {
           <Route element={<PrivateRouterTrueLogin />}>
             <Route path="/login" element={<Login/>}/>
           </Route>
+            <Route path="/homeadmin" element={<HomeAdmin />} />
 
           <Route element={<PrivateRouterFalseLogin />}>
             <Route path="/cart" element={<Cart />} />

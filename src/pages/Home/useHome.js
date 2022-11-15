@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProduct } from "../../config/store/reducer/ProductSlice/ProductSlice"
+import { handleedit } from "../../component/molecules/Table/useTable"
 
 export const UseHome =() =>{
     const product = useSelector((state) => state.products.products)
@@ -8,6 +9,6 @@ export const UseHome =() =>{
     
     useEffect(()=>{
         dispatch(fetchProduct())
-    }, [dispatch])
+    }, [dispatch, handleedit])
     return {product}
 }

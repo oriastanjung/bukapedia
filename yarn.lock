@@ -1172,6 +1172,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+sweetalert2@^11.6.7:
+  version "11.6.7"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.6.7.tgz#35355ba3a50b788de4a413c306ff2ecaa92c184f"
+  integrity sha512-nbsmUtfTodJvZ873sn61U0brrHtn8xi8wfn+bVVc9IV05fgOdDMhAhdQ2zQJBYsvggbbp46ZFHMr0/fZJnZPtQ==
+
 tailwindcss@^3.2.2:
   version "3.2.2"
   resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.2.2.tgz"

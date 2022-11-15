@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CartItems } from "../../component/molecules";
 import { useCart } from "./useCart";
 function Cart() {
-  const { dummyData, total } = useCart();
+  const { data, total } = useCart();
 
   return (
     <div className="container mt-4 w-100 mx-auto">
@@ -24,13 +24,11 @@ function Cart() {
           <p className="text-xl">Total</p>
         </div>
         <div className="flex flex-col gap-5  ">
-          {dummyData &&
-            dummyData.map((item) => (
+          {data &&
+            data?.map((item, idx) => (
               <CartItems
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                price={item.price}
+                key={idx}
+                id={item.productId}
                 quantity={item.quantity}
               />
             ))}

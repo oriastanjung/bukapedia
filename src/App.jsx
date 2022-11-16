@@ -1,18 +1,19 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./component/molecules";
-import { Home, Login, Cart, HomeAdmin } from "./pages";
+import { Home, Login, Cart, HomeAdmin, FaceData } from "./pages";
 import Detail from "./pages/Detail/Detail";
 import { ProtectRoute } from "./utils/PrivateRoute/PrivateRoute";
 function App() {
-  const { PrivateRouterFalseLogin, PrivateRouterTrueLogin } = ProtectRoute();
+  const { PrivateRouterFalseLogin, PrivateRouterTrueLogin , isAdmin} = ProtectRoute();
   return (
     <div>
       <Navbar />
       <div className="pt-16 ">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={isAdmin ? <HomeAdmin /> : <Home />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/fake" element={<FaceData />} />
 
           <Route element={<PrivateRouterTrueLogin />}>
             <Route path="/login" element={<Login />} />

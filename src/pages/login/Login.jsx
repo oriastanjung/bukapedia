@@ -16,8 +16,8 @@ const Login = () => {
        <div>
         <Input placeholder="Username" onChange={handleInput} name="username"  className={"w-96 my-10"}/>
         <div className='flex bg-white rounded-xl items-center '>
-          <Input placeholder="Password" onChange={handleInput} name="password" type={isFalse ? "password" : "text"}  className={"w-[260px] "}/>
-          <img src={isFalse ? hiddenpassord : viewpassword} alt="eyes" className='w-[20px] cursor-pointer' onClick={handleView}  />
+          <Input placeholder="Password" onChange={handleInput} name="password" type={isFalse ? "text" : "password"}  className={"w-[260px] "}/>
+          <img src={isFalse ? viewpassword : hiddenpassord } alt="eyes" className='w-[20px] cursor-pointer' onClick={handleView}  />
         </div>
         <div className='flex justify-center'>
           <Button name={"Login"} className={" my-5 w-40 h-14"} handleSubmit={handleLogin} />

@@ -6,6 +6,7 @@ const useNavbar = () => {
   const dispatch = useDispatch()
   const [isfalse, setIsfalse] = useState(false);
   const isLogin = localStorage.getItem('token') ? true : false;
+  const isAdmin = localStorage.getItem('role') ? true : false;
 
   const handleNavbar = () => {
     if (window.scrollY >= 10) {
@@ -20,7 +21,7 @@ const useNavbar = () => {
     dispatch(logout())
   }
   
-  return { isfalse, isLogin , handleLogout};
+  return { isfalse, isLogin , handleLogout, isAdmin};
 };
 
 export { useNavbar };

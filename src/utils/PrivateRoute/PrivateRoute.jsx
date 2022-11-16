@@ -3,6 +3,7 @@ import {Outlet, Navigate} from 'react-router-dom'
 
 const ProtectRoute = () =>{
     const [token, setToken] = useState(false)
+    const isAdmin = localStorage.getItem('role') === 'admin' ? true : false
     useEffect(()=>{
         setToken(localStorage.getItem('token') ? true : false)
     },[token])
@@ -14,7 +15,7 @@ const ProtectRoute = () =>{
             return token ? <Navigate to="/" /> : <Outlet />
     }
 
-    return {PrivateRouterFalseLogin, PrivateRouterTrueLogin}
+    return {PrivateRouterFalseLogin, PrivateRouterTrueLogin, isAdmin}
 }
 
 export {ProtectRoute}

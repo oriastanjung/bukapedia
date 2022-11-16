@@ -5,7 +5,7 @@ function useDetail(props) {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.detailProduct);
   const data = product;
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
     setQuantity(quantity + 1);

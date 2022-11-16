@@ -3,7 +3,7 @@ import { useNavbar } from "./useNavbar";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { isfalse, isLogin, handleLogout } = useNavbar();
+  const { isfalse, isLogin, handleLogout, isAdmin } = useNavbar();
 
   return (
     <div
@@ -17,8 +17,8 @@ const Navbar = () => {
       </p>
       {isLogin ? (
         <>
-          <p>
-            <Link to={"/cart"}>Cart</Link>
+          <p className="cursor-pointer">
+           {isAdmin ?  <Link to={"/rekap-penjualan"}>Rekap Penjualan</Link> :  <Link to={"/cart"}>Cart</Link>}
           </p>
           <p onClick={handleLogout} className="cursor-pointer">Logout</p>
         </>

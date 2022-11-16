@@ -16,12 +16,18 @@ export const fetchUsers = createAsyncThunk('getusers/all', async (datalogin) =>{
         const logincondition = datausers.find(item => item.username === datalogin.username && item.password === datalogin.password)
         if(logincondition){
             localStorage.setItem('token', logincondition.address.zipcode)
+            localStorage.setItem('role', 'user')
             SwalLogin()
             window.location.reload()
             return console.log('login success');
         } else{
-            Swallogout()
-            return console.log("failed");
+            if(datalogin.username === "admin@bukapedia.com" && datalogin.password === "admin123"){
+                localStorage.setItem('token', 'admin')
+                localStorage.setItem('role', 'admin')
+            SwalLogin()
+            window.location.reload()
+            return console.log('login success');
+            }else{}
         }
     } catch (error) {
         console.log(error.response);
@@ -35,6 +41,7 @@ const usersSlice = createSlice({
     reducers: {
         logout: () => {
             localStorage.removeItem('token')
+            localStorage.removeItem('role')
             window.location.reload()
         },
         UnPrivateRoute : () =>{

@@ -1,42 +1,38 @@
 import React, { useState } from "react";
+import { Shopping } from "../../assets/icon";
+import { Button } from "../../component/atoms";
 import { CartItems } from "../../component/molecules";
+import Sum from "./Sum";
 import { useCart } from "./useCart";
 function Cart() {
-  const { data, total } = useCart();
+  const { data , Mantul} = useCart();
+  const {josin} = Mantul()
+
+  console.log(josin, "sjjss");
 
   return (
-    <div className="container mt-4 w-100 mx-auto">
-      <div
-        className="flex items-center gap-2 py-4"
-        style={{ borderBottom: "2px solid gray" }}
-      >
-        <img
-          src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png"
-          alt=""
-          className="w-10"
-        />
-        <h1 className="text-3xl font-semibold">My Cart</h1>
+    <div className="mx-6 mt-10">
+      <div className="flex items-center">
+        <img src={Shopping} alt="cart" className="w-20" />
+        <h1 className="ml-2 font-bold  text-2xl">My Cart</h1>
       </div>
-      <div>
-        <div className="flex gap-5 justify-end mt-4">
-          <p className="text-xl">Price</p>
-          <p className="text-xl">Quantity</p>
-          <p className="text-xl">Total</p>
-        </div>
-        <div className="flex flex-col gap-5  ">
-          {data &&
-            data?.map((item, idx) => (
-              <CartItems
-                key={idx}
-                id={item.productId}
-                quantity={item.quantity}
-              />
-            ))}
-        </div>
-        <div className="flex justify-around align-center my-4">
-          <p className="text-3xl font-semibold mobile:text-xl">Total :</p>
-          <p className="text-3xl font-semibold mobile:text-xl">{total}</p>
-        </div>
+      <div className="h-2 bg-black rounded-full drop-shadow-xl "></div>
+      <div className="flex w-full mt-3 font-bold capitalize">
+        <div className="w-9/12">nama product</div>
+        <div className="w-1/12">Price</div>
+        <div className="w-1/12">Quantity</div>
+        <div className="w-1/12">Total</div>
+      </div>
+      <div className="h-1 bg-black rounded-full"></div>
+      {data?.map((item, i)=> {
+        console.log(josin);
+        return(
+          <CartItems data={item} idbarang={item.id}/>
+        )
+      })}
+      <Sum />
+      <div className="flex justify-end">
+        <Button name={"Checkout"} />
       </div>
     </div>
   );

@@ -1,15 +1,29 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCartUser } from "../../config/store/reducer/cartSlice/cartSlice";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { CartItems } from "../../component/molecules";
+
 function useCart() {
+  const id = localStorage.getItem("id");
+  const [data, setData] = useState()
   const dispatch = useDispatch();
-  const { cart: data, total } = useSelector((state) => state.cart);
-  // console.log("cart >>>> ", data);
-  const userId = JSON.parse(localStorage.getItem("userid"));
-  useEffect(() => {
-    dispatch(fetchCartUser(userId));
-  }, []);
-  return { data, total };
+
+
+  useEffect(()=>{
+    axios.get(`https://fakestoreapi.com/carts/${id}`)
+    .then((response) => {
+      setData(response.data.products)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  },[dispatch])
+  
+  const Mantul = (josin) =>{
+    return {josin}
+    
+  }
+  return {data, Mantul}
 }
 
 export { useCart };

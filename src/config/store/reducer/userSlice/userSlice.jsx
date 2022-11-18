@@ -16,6 +16,7 @@ export const fetchUsers = createAsyncThunk('getusers/all', async (datalogin) =>{
         const logincondition = datausers.find(item => item.username === datalogin.username && item.password === datalogin.password)
         if(logincondition){
             localStorage.setItem('token', logincondition.address.zipcode)
+            localStorage.setItem('id', logincondition.id)
             localStorage.setItem('role', 'user')
             SwalLogin()
             window.location.reload()

@@ -1,37 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import {
-  addQuantity,
-  countTotalPrice,
-} from "../../../config/store/reducer/cartSlice/cartSlice";
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
 
-function useCartItems(props) {
-  const dispatch = useDispatch();
-  const [value, setValue] = useState(0);
-  const [data, setData] = useState({});
-  const onChangeHandler = (e) => {
-    setValue(e.target.value);
-    dispatch(addQuantity({ id: props.id, value: e.target.value }));
-    dispatch(countTotalPrice());
-  };
-  const getQuantity = (data) => {
-    setValue(data);
-  };
-  useEffect(() => {
-    function getDataProduct() {
-      return fetch(`https://fakestoreapi.com/products/${props.id}`).then(
-        (res) => res.json()
-      );
-    }
-    const storedPromise = getDataProduct();
-    storedPromise.then((result) => {
-      setData(result);
-    });
-    // setData(getData());
-  }, []);
+const useCartItems = (id) => {
+  const [dataProduct, setDataProduct] = useState([]) 
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    axios.get(`https://fakestoreapi.com/products/${id}`)
+    .then((response) => {
+      setDataProduct(response.data)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  },[])
+  const Total = (quntity, price) =>{
+    const sumALL = quntity * price
+    return {sumALL}
+  }
 
-  return { value, setValue, onChangeHandler, getQuantity, data };
+  useEffect(()=>{
+
+  },[])
+  
+  return {dataProduct,Total}
 }
 
-export { useCartItems };
+export default useCartItems

@@ -6,7 +6,7 @@ const useNavbar = () => {
   const dispatch = useDispatch()
   const [isfalse, setIsfalse] = useState(false);
   const isLogin = localStorage.getItem('token') ? true : false;
-  const isAdmin = localStorage.getItem('role') ? true : false;
+  const isAdmin = localStorage.getItem('role') === 'admin' ? true : false;
 
   const handleNavbar = () => {
     if (window.scrollY >= 10) {

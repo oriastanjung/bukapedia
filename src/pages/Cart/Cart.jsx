@@ -8,7 +8,6 @@ function Cart() {
   const { data , Mantul} = useCart();
   const {josin} = Mantul()
 
-  console.log(josin, "sjjss");
 
   return (
     <div className="mx-6 mt-10">
@@ -30,7 +29,7 @@ function Cart() {
           <CartItems data={item} idbarang={item.id}/>
         )
       })}
-      <Sum />
+      {data && <Sum data={data} />}
       <div className="flex justify-end">
         <Button name={"Checkout"} />
       </div>

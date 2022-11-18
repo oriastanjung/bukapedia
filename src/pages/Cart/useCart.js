@@ -20,6 +20,7 @@ function useCart() {
   },[dispatch])
   
   const Mantul = (josin) =>{
+    // console.log("mantul josin >>> ", josin)
     return {josin}
     
   }

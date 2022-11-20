@@ -1,6 +1,4 @@
 import React from 'react'
-import { useCart } from './useCart'
-import useCartItems from '../../component/molecules/CartItems/useCartItems'
 
 const Sum = () => {
     

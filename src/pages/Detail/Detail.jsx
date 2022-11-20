@@ -5,23 +5,23 @@ import DetailCard from "../../component/molecules/DetailCard/DetailCard";
 import useDetail from "./useDetail";
 function Detail() {
   const { id } = useParams();
-  const { data, quantity, handleDecrement, handleIncrement } = useDetail({
+  const { product, quantity, handleDecrement, handleIncrement, Addcart } = useDetail({
     id,
   });
   return (
     <div className="flex justify-center items-center mt-[5%] mobile:mx-[4%] md:mx-0">
       <DetailCard>
-        {data && (
+        {product && (
           <>
             <div className="w-[100%] h-[100%] mr-4">
-              <img src={data.image} alt="" />
+              <img src={product.image} alt="" />
             </div>
             <div className="flex flex-col gap-4">
               <h1 className="font-bold text-5xl mb-4 mobile:text-center md:text-left">
-                {data.title}
+                {product.title}
               </h1>
               <h2 className="font-semibold text-4xl mb-3 mobile:text-center md:text-left">
-                ${data.price}
+                ${product.price}
               </h2>
               <div className="flex gap-3 mobile:items-center md:items-start mobile:flex-col md:flex-row ">
                 <div className="flex flex-row gap-2">
@@ -49,13 +49,13 @@ function Detail() {
                   </div>
                 </div>
                 <div>
-                  <Button name={"Add To Cart"} />
+                  <Button name={"Add To Cart"} handleSubmit={Addcart} />
                 </div>
               </div>
               <div className="flex flex-col gap-2 mt-5 mobile:text-center md:text-left">
                 <h3 className="text-3xl font-medium">Product Details</h3>
                 <p className="text-xl font-thin w-[85%] mobile:text-center md:text-left mobile:w-[100%] md:w-[85%]">
-                  {data.description}
+                  {product.description}
                 </p>
               </div>
             </div>

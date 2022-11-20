@@ -4,11 +4,11 @@ import { Button } from "../../component/atoms";
 import { CartItems } from "../../component/molecules";
 import Sum from "./Sum";
 import { useCart } from "./useCart";
+import useDetail from "../Detail/useDetail";
 function Cart() {
-  const { data , Mantul} = useCart();
-  const {josin} = Mantul()
+  const {data} = useCart();
+  // const {datas} = useDetail()
 
-  console.log(josin, "sjjss");
 
   return (
     <div className="mx-6 mt-10">
@@ -25,7 +25,6 @@ function Cart() {
       </div>
       <div className="h-1 bg-black rounded-full"></div>
       {data?.map((item, i)=> {
-        console.log(josin);
         return(
           <CartItems data={item} idbarang={item.id}/>
         )

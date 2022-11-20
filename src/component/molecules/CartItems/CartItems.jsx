@@ -1,14 +1,12 @@
 import React from 'react'
 import useCartItems from './useCartItems';
-import { useCart } from '../../../pages/Cart/useCart';
 
 const CartItems = ({data, idbarang}) => {
   const {productId, quantity } = data
   const {dataProduct, Total} = useCartItems(productId)
   const {title, price, rating, image, id, description, category} = dataProduct
   const {sumALL} = Total(quantity, price)
- const {Mantul} = useCart()
- Mantul(sumALL)
+
   
   return (
     <div>

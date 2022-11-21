@@ -738,6 +738,14 @@ html {
   height: 13rem;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
+.h-48 {
+  height: 12rem;
+}
+
 .w-full {
   width: 100%;
 }

@@ -6,7 +6,7 @@ import useDetail from "./useDetail";
 function Detail() {
   const { id } = useParams();
   const { product, quantity, handleDecrement, handleIncrement, Addcart } = useDetail({
-    id,
+    id
   });
   return (
     <div className="flex justify-center items-center mt-[5%] mobile:mx-[4%] md:mx-0">

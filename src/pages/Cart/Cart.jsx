@@ -4,12 +4,13 @@ import { Button } from "../../component/atoms";
 import { CartItems } from "../../component/molecules";
 import Sum from "./Sum";
 import { useCart } from "./useCart";
-import useDetail from "../Detail/useDetail";
 function Cart() {
-  const {data} = useCart();
-  // const {datas} = useDetail()
+  const {dataStorageChart} = useCart()
 
-
+  console.log(dataStorageChart, "yang mau d tezxt");
+  
+  const product = localStorage.getItem('local')
+  console.log(product);
   return (
     <div className="mx-6 mt-10">
       <div className="flex items-center">
@@ -24,12 +25,12 @@ function Cart() {
         <div className="w-1/12">Total</div>
       </div>
       <div className="h-1 bg-black rounded-full"></div>
-      {data?.map((item, i)=> {
+      {JSON.parse(product)?.map((item, i)=> {
         return(
           <CartItems data={item} idbarang={item.id}/>
         )
       })}
-      <Sum />
+      {dataStorageChart && <Sum data={dataStorageChart} />}
       <div className="flex justify-end">
         <Button name={"Checkout"} />
       </div>

@@ -12,7 +12,7 @@ const CartItems = ({data, idbarang}) => {
     <div>
           <div className="flex w-full mt-3 font-bold capitalize items-center bg-slate-100">
             <div className="w-9/12 flex items-center gap-7">
-              <div >
+              <div className='h-48 flex justify-center items-center'>
                 <img src={image} alt="imageproduct" className='w-32'/>
               </div>
               <div>

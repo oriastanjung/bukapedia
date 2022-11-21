@@ -102,6 +102,7 @@ const cartSlice = createSlice({
       const data = action.payload;
       let temp = [];
       data.map((item) => {
+        temp.pop(item.products);
         temp.push(item.products);
       });
 

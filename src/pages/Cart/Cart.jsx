@@ -6,11 +6,8 @@ import Sum from "./Sum";
 import { useCart } from "./useCart";
 function Cart() {
   const {dataStorageChart} = useCart()
-
-  console.log(dataStorageChart, "yang mau d tezxt");
-  
   const product = localStorage.getItem('local')
-  console.log(product);
+  
   return (
     <div className="mx-6 mt-10">
       <div className="flex items-center">
@@ -19,9 +16,9 @@ function Cart() {
       </div>
       <div className="h-2 bg-black rounded-full drop-shadow-xl "></div>
       <div className="flex w-full mt-3 font-bold capitalize">
-        <div className="w-9/12">nama product</div>
+        <div className="w-8/12">nama product</div>
         <div className="w-1/12">Price</div>
-        <div className="w-1/12">Quantity</div>
+        <div className="w-2/12">Quantity</div>
         <div className="w-1/12">Total</div>
       </div>
       <div className="h-1 bg-black rounded-full"></div>

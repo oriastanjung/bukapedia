@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./component/molecules";
-import { Home, Login, Cart, HomeAdmin, FaceData, Recap } from "./pages";
+import { Home, Login, Cart, HomeAdmin, FaceData, RekapPenjualan } from "./pages";
 import Detail from "./pages/Detail/Detail";
 import { ProtectRoute } from "./utils/PrivateRoute/PrivateRoute";
 function App() {
@@ -21,7 +21,7 @@ function App() {
             <Route path="/homeadmin" element={<HomeAdmin />} />
 
           <Route element={<PrivateRouterFalseLogin />}>
-            {isAdmin ? <Route path="/rekap-penjualan" element={<Recap />} />: <Route path="/cart" element={<Cart />} /> 
+            {isAdmin ? <Route path="/rekap-penjualan" element={<RekapPenjualan />} />: <Route path="/cart" element={<Cart />} /> 
             }
           </Route>
         </Routes>

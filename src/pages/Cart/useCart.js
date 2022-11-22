@@ -11,17 +11,16 @@ function useCart(datatotal) {
     if(!localStorage.getItem('local')){
       axios.get(`https://fakestoreapi.com/carts/${id}`)
     .then((response) => {
-      localStorage.setItem('local', JSON.stringify(data))
+      localStorage.setItem('local', JSON.stringify(response.data.products))
       setData(response.data.products)
     })
     .catch((err)=>{
       console.log(err);
     })
     } else{
-      console.log("ada data di localStorage");
+      console.log("");
     }
   },[dispatch])
-  console.log(data, "data ini data");
   
   const Mantul = (josin) =>{
     return {josin}
@@ -32,8 +31,7 @@ function useCart(datatotal) {
 
   
   const dataStorageChart = localStorage.getItem('local')
-  console.log(dataStorageChart, "baru data");
-  return {data, dataStorageChart, Mantul, setData, TotalAll}
+  return {data, dataStorageChart, Mantul, setData}
 }
 
 export { useCart }

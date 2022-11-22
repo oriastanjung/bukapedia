@@ -4,6 +4,7 @@ import useCartItems from "../../component/molecules/CartItems/useCartItems";
 import axios from "axios";
 import useSum from "./useSum";
 const Sum = ({data}) => {
+  console.log(data, "data");
   // const data = props.data;
   // const [total, setTotal] = useState(0);
   // let tempTotal = 0
@@ -118,7 +119,7 @@ const Sum = ({data}) => {
           .catch(err => console.log(err))
         })
       // },2000)
-      },[3000])
+      },[])
 
       const {nilai}= useSum()
 

@@ -638,6 +638,11 @@ html {
   margin-bottom: 0.5rem;
 }
 
+.mx-10 {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -738,10 +743,6 @@ html {
   height: 13rem;
 }
 
-.h-32 {
-  height: 8rem;
-}
-
 .h-48 {
   height: 12rem;
 }
@@ -754,12 +755,16 @@ html {
   width: 5rem;
 }
 
-.w-9\/12 {
-  width: 75%;
+.w-8\/12 {
+  width: 66.666667%;
 }
 
 .w-1\/12 {
   width: 8.333333%;
+}
+
+.w-2\/12 {
+  width: 16.666667%;
 }
 
 .w-\[100\%\] {
@@ -790,10 +795,6 @@ html {
   width: 10rem;
 }
 
-.w-2\/12 {
-  width: 16.666667%;
-}
-
 .w-10\/12 {
   width: 83.333333%;
 }
@@ -804,10 +805,6 @@ html {
 
 .w-\[1000px\] {
   width: 1000px;
-}
-
-.w-8\/12 {
-  width: 66.666667%;
 }
 
 .w-3\/12 {
@@ -874,6 +871,11 @@ html {
   gap: 1.75rem;
 }
 
+.gap-x-2 {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}
+
 .gap-x-10 {
   -moz-column-gap: 2.5rem;
        column-gap: 2.5rem;
@@ -932,6 +934,16 @@ html {
 .bg-slate-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
+}
+
+.bg-green-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
 }
 
 .bg-loginImage {
@@ -1001,6 +1013,16 @@ html {
   padding-bottom: 0.25rem;
 }
 
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .pt-16 {
   padding-top: 4rem;
 }
@@ -1015,6 +1037,10 @@ html {
 
 .pt-3 {
   padding-top: 0.75rem;
+}
+
+.pr-10 {
+  padding-right: 2.5rem;
 }
 
 .pl-4 {

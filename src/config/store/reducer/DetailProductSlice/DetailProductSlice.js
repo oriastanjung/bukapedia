@@ -23,7 +23,7 @@ const DetailProductSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchDetailProduct.fulfilled, (state, action) => {
-      console.log("payload >> ", action.payload);
+      // console.log("payload >> ", action.payload);
       state.product = action.payload;
     });
   },

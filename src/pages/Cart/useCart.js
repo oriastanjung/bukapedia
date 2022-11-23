@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-// import useDetail from "../Detail/useDetail";
 function useCart(datatotal) {
   const id = localStorage.getItem("id");
   const [data, setData] = useState()
@@ -26,10 +25,6 @@ function useCart(datatotal) {
     return {josin}
   }
 
-
-
-
-  
   const dataStorageChart = localStorage.getItem('local')
   return {data, dataStorageChart, Mantul, setData}
 }

@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Input } from '../../atoms'
-import { handleedit } from '../Table/useTable'
 import useCardData from './useCardData'
 
 const Cardtableadmin = ({item}) => {
-  const {counterDeccrement, counterIncrement, datacrement} = useCardData(item.rating.count)
+  const {counterDeccrement, counterIncrement, datacrement, udapteDataproduct} = useCardData(item.rating.count, item)
   return (
     <>
       <td className='flex'>
@@ -25,7 +24,7 @@ const Cardtableadmin = ({item}) => {
         </div>
       </td>
       <td className="pt-3">
-      <Button name={"update"} handleSubmit={handleedit(item)}  className="h-14 "/ >
+      <Button name={"update"} handleSubmit={udapteDataproduct}  className="h-14 "/ >
       </td>
       </>
   )

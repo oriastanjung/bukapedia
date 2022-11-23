@@ -7,7 +7,6 @@ const CartItems = ({data, idbarang}) => {
   const {dataProduct, Total} = useCartItems(productId)
   const {title, price, rating, image, id, description, category} = dataProduct
   const {sumALL} = Total(quantity, price)
-  console.log(data, "ini adalah id product");
   
   return (
     <div>

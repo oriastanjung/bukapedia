@@ -3,13 +3,15 @@ import { v4 as uuidv4 } from 'uuid';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetailProduct } from "../../config/store/reducer/DetailProductSlice/DetailProductSlice";
+import { useNavigate } from "react-router-dom";
 
 function useDetail(props) {
   const dispatch = useDispatch();
+  const naviagte = useNavigate()
   const { product } = useSelector((state) => state.detailProduct);
+  const token = localStorage.getItem('token')
   
   const [quantity, setQuantity] = useState(1);
-  // const {data, setData} = useCart()
 
   const handleIncrement = () => {
     setQuantity(quantity + 1);
@@ -26,12 +28,14 @@ function useDetail(props) {
   }, []);
 
  const Addcart = () =>{
+if(token === null){
+  naviagte('/login')
+} else{
   axios.post('https://fakestoreapi.com/carts', {
     userId: localStorage.getItem("id"),
             date : new Date(),
             products : [
               {
-                // id: uuidv4,
                 productId : product.id,
                 quantity : quantity
               }
@@ -44,7 +48,6 @@ function useDetail(props) {
               const data = JSON.parse(localStorage.getItem('local'))
               const pushLocal = [...data, response.data.products[0]]
               localStorage.setItem('local', JSON.stringify(pushLocal))
-              console.log("apakah ini");
             } else{
               const data = JSON.parse(localStorage.getItem('local'))
               let replace = response.data.products[0].quantity
@@ -54,16 +57,15 @@ function useDetail(props) {
               }
               const pushLocal = [...data]
               localStorage.setItem('local', JSON.stringify(pushLocal))
-              console.log("apakah ini yang ini", data);
             }
           })
           const pushLocal = [...josin, response.data.products[0]]
           localStorage.setItem('local', JSON.stringify(pushLocal))
         })
         .catch(err => console.log(err))
+}
  }
- const josin = JSON.parse(localStorage.getItem('local'))
-console.log(josin, "josin, aowkaowk");
+//  const josin = JSON.parse(localStorage.getItem('local'))
 
 
   return { product, quantity, handleDecrement, handleIncrement, Addcart};

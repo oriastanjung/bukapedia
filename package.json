@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
+    "redux-persist": "^6.0.0",
     "sweetalert2": "^11.6.7",
     "uuid": "^9.0.0",
     "vercel": "^28.5.6"

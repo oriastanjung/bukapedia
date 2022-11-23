@@ -1,32 +1,35 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-function useCart(datatotal) {
-  const id = localStorage.getItem("id");
-  const [data, setData] = useState()
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  resetCart,
+  resetCheckout,
+  addToCheckout,
+} from "../../config/store/reducer/cartSlice/cartSlice";
+import Swal from "sweetalert2";
+function useCart() {
   const dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.cart);
 
-  useEffect(()=>{
-    if(!localStorage.getItem('local')){
-      axios.get(`https://fakestoreapi.com/carts/${id}`)
-    .then((response) => {
-      localStorage.setItem('local', JSON.stringify(response.data.products))
-      setData(response.data.products)
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
-    } else{
-      console.log("");
-    }
-  },[dispatch])
-  
-  const Mantul = (josin) =>{
-    return {josin}
-  }
+  const handleCheckout = () => {
+    Swal.fire({
+      title: "Checkout Sekarang ?",
+      showDenyButton: true,
+      confirmButtonText: "Chekout",
+      denyButtonText: `Batalkan`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("Terimakasih Telah Membeli!", "", "success");
+        // dispatch(resetCheckout());
+        dispatch(addToCheckout());
+        // dispatch(resetCart());
+      }
+    });
+  };
 
-  const dataStorageChart = localStorage.getItem('local')
-  return {data, dataStorageChart, Mantul, setData}
+  return { cart, handleCheckout };
 }
 
-export { useCart }
+export { useCart };

@@ -3,126 +3,146 @@ import axios from "axios";
 
 const initialState = {
   cart: [
-    // {
-    //   id: 1,
-    //   title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    //   price: 20,
-    //   quantity: 3,
-    // },
-    // {
-    //   id: 2,
-    //   title: "Product 2",
-    //   price: 30,
-    //   quantity: 5,
-    // },
-    // {
-    //   id: 3,
-    //   title: "Product 3",
-    //   price: 14,
-    //   quantity: 15,
-    // },
-    // {
-    //   id: 4,
-    //   title: "Product 4",
-    //   price: 14,
-    //   quantity: 15,
-    // },
-    // {
-    //   id: 5,
-    //   title: "Product 5",
-    //   price: 14,
-    //   quantity: 15,
-    // },
-    // {
-    //   id: 6,
-    //   title: "Product 6",
-    //   price: 14,
-    //   quantity: 15,
-    // },
-    // {
-    //   id: 7,
-    //   title: "Product 7",
-    //   price: 14,
-    //   quantity: 15,
-    // },
+    {
+      amount: 0,
+      category: "men's clothing",
+      description:
+        "Slim-fitting style, contrast raglan long sleeve, three-button ",
+      id: 2,
+      image:
+        "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      price: 22.3,
+      rating: { rate: 4.1, count: 259 },
+      title: "Mens Casual Premium Slim Fit T-Shirts ",
+    },
   ],
-  total: 0,
+  checkout: [],
+  totalAmount: 0,
 };
-
-const getProductData = async (id) => {
-  try {
-    const result = await axios.get(`https://fakestoreapi.com/products/${id}`);
-    // console.log("result >>> ", result.data);
-    return result.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const fetchCartUser = createAsyncThunk(
-  "cart/fetchCartUser",
-  async (userId) => {
-    try {
-      const res = await axios.get(
-        `https://fakestoreapi.com/carts/user/${userId}`
-      );
-      return res.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialState,
   reducers: {
-    addQuantity: (state, action) => {
-      const { id, value } = action.payload;
+    addToCart: (state, action) => {
+      console.log("action >> ", action.payload);
+      const updatedTotalItem =
+        state.totalAmount + action.payload.price * action.payload.amount;
 
-      state.cart.map((item) => {
-        if (item.id == id) {
-          item.quantity = value;
+      let existingCartItemIndex = state.cart.findIndex((item) => {
+        return item.id === action.payload.id;
+      });
+
+      console.log("wow >> existingIndex", existingCartItemIndex);
+      const existingCartItem = state.cart[existingCartItemIndex];
+      console.log(" existingCartItem .>>> ", existingCartItem);
+      let updatedItems;
+
+      if (existingCartItem) {
+        const updatedItem = {
+          ...existingCartItem,
+          amount: existingCartItem.amount + action.payload.amount,
+        };
+        updatedItems = [...state.cart];
+        updatedItems[existingCartItemIndex] = updatedItem;
+      } else {
+        updatedItems = state.cart.concat(action.payload);
+      }
+      state.cart = updatedItems;
+      state.totalAmount = updatedTotalItem;
+    },
+    removeFromCartAmount: (state, action) => {
+      // console.log("remove cart action payload >> ", action.payload);
+      // const filteredCart = state.cart.filter(
+      //   (item) => item.id != action.payload
+      // );
+      // state.cart = filteredCart;
+      const existingCartItemIndex = state.cart.findIndex(
+        (item) => item.id === action.payload
+      );
+      const existingItem = state.cart[existingCartItemIndex];
+
+      const updatedTotalAmount = state.totalAmount - existingItem.price;
+
+      let updatedItems;
+      if (existingItem.amount === 1) {
+        updatedItems = state.cart.filter((item) => item.id !== action.payload);
+      } else {
+        const updatedItem = {
+          ...existingItem,
+          amount: existingItem.amount - 1,
+        };
+        updatedItems = [...state.cart];
+        updatedItems[existingCartItemIndex] = updatedItem;
+      }
+      state.cart = updatedItems;
+      state.totalAmount = updatedTotalAmount;
+    },
+    addFromCartAmount: (state, action) => {
+      const existingCartItemIndex = state.cart.findIndex(
+        (item) => item.id === action.payload
+      );
+      const existingItem = state.cart[existingCartItemIndex];
+
+      const updatedTotalAmount = state.totalAmount + existingItem.price;
+
+      let updatedItems;
+
+      const updatedItem = {
+        ...existingItem,
+        amount: existingItem.amount + 1,
+      };
+      updatedItems = [...state.cart];
+      updatedItems[existingCartItemIndex] = updatedItem;
+
+      state.cart = updatedItems;
+      state.totalAmount = updatedTotalAmount;
+    },
+
+    resetCart: (state) => {
+      state.cart = [];
+    },
+    resetCheckout: (state) => {
+      state.checkout = [];
+    },
+    addToCheckout: (state) => {
+      let cartLama = [...state.cart];
+
+      let checkoutLama = [...state.checkout];
+      let ygTidakSama = [];
+      let kumpulanIndexYangSama = [];
+      if (checkoutLama.length === 0) {
+        state.checkout = [...cartLama];
+      } else {
+        for (let i = 0; i < checkoutLama.length; i++) {
+          for (let j = 0; j < cartLama.length; j++) {
+            if (checkoutLama[i].id == cartLama[j].id) {
+              kumpulanIndexYangSama = [
+                ...kumpulanIndexYangSama,
+                { index: i, amount: cartLama[j].amount },
+              ];
+            } else {
+              ygTidakSama = [...ygTidakSama, cartLama[j]];
+            }
+          }
         }
-      });
-
-      //   state.cart[id].quantity = value;
-      //   console.log(state.cart[id].quantity);
+        console.log("kumpulan id yg sama", kumpulanIndexYangSama);
+        for (let i = 0; i < kumpulanIndexYangSama.length; i++) {
+          checkoutLama[kumpulanIndexYangSama[i].index].amount +=
+            kumpulanIndexYangSama[i].amount;
+        }
+        // state.checkout = [...checkoutLama, ...ygTidakSama];
+        state.checkout = [...checkoutLama, ...ygTidakSama];
+      }
     },
-    countTotalPrice: (state) => {
-      let sum = 0;
-      state.cart.map((item) => {
-        return (sum += item.price * item.quantity);
-      });
-      state.total = sum;
-    },
-  },
-  extraReducers(builder) {
-    builder.addCase(fetchCartUser.fulfilled, (state, action) => {
-      const data = action.payload;
-      let temp = [];
-      data.map((item) => {
-        temp.pop(item.products);
-        temp.push(item.products);
-      });
-
-      let allProduct = [];
-      temp.map((item) => {
-        item.map((product) => {
-          allProduct = [...allProduct, product];
-        });
-      });
-
-      state.cart = allProduct; // THIS ARE THE RESPONSES YOU ARE LOOKING FOR.
-      // tempData.push(getProductData(allProduct[i].productId));
-      // allProduct.map((item) => {
-      //   // console.log(item.productId);
-      //   let temp = getProductData(item.productId);
-      //   console.log("temp >>> ", temp);
-      //   tempData.push(temp);
-      // });
-    });
   },
 });
-export const { addQuantity, countTotalPrice } = cartSlice.actions;
+export const {
+  addToCart,
+  resetCart,
+  removeFromCartAmount,
+  addFromCartAmount,
+  addToCheckout,
+  resetCheckout,
+} = cartSlice.actions;
 export default cartSlice.reducer;

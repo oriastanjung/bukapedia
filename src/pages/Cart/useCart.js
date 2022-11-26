@@ -24,7 +24,7 @@ function useCart() {
         Swal.fire("Terimakasih Telah Membeli!", "", "success");
         // dispatch(resetCheckout());
         dispatch(addToCheckout());
-        // dispatch(resetCart());
+        dispatch(resetCart());
       }
     });
   };

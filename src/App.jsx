@@ -10,6 +10,9 @@ import {
   RekapPenjualan,
 } from "./pages";
 import Detail from "./pages/Detail/Detail";
+import MenPage from "./pages/MenPage/MenPage";
+import JewelryPage from "./pages/JewelryPage/JewelryPage";
+import TechPage from "./pages/TechPage/TechPage";
 import TestCheckout from "./pages/TestCheckout/TestCheckout";
 import { ProtectRoute } from "./utils/PrivateRoute/PrivateRoute";
 function App() {
@@ -21,6 +24,9 @@ function App() {
       <div className="pt-16 ">
         <Routes>
           <Route path="/" element={isAdmin ? <HomeAdmin /> : <Home />} />
+          <Route path="/men" element={<MenPage />} />
+          <Route path="/jewelry" element={<JewelryPage />} />
+          <Route path="/electronics" element={<TechPage />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/fake" element={<FaceData />} />
           <Route path="/testCheckout" element={<TestCheckout />} />

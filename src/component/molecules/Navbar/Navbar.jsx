@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const { isfalse, isLogin, handleLogout, isAdmin } = useNavbar();
 
-
   return (
     <div
       className={`z-999 flex gap-x-10 p-5 w-full fixed text-black text-xl font-medium  bg-navbarcol ${
@@ -16,12 +15,27 @@ const Navbar = () => {
       <p className="cursor-pointer">
         <Link to={"/"}>Home</Link>
       </p>
+      <p className="cursor-pointer">
+        <Link to={"/men"}>Men's</Link>
+      </p>
+      <p className="cursor-pointer">
+        <Link to={"/jewelry"}>Jewelry</Link>
+      </p>
+      <p className="cursor-pointer">
+        <Link to={"/electronics"}>Electronics</Link>
+      </p>
       {isLogin ? (
         <>
           <p className="cursor-pointer">
-           {isAdmin ?  <Link to={"/rekap-penjualan"}>Rekap Penjualan</Link> :  <Link to={"/cart"}>Cart</Link>}
+            {isAdmin ? (
+              <Link to={"/rekap-penjualan"}>Rekap Penjualan</Link>
+            ) : (
+              <Link to={"/cart"}>Cart</Link>
+            )}
           </p>
-          <p onClick={handleLogout} className="cursor-pointer">Logout</p>
+          <p onClick={handleLogout} className="cursor-pointer">
+            Logout
+          </p>
         </>
       ) : (
         <p>

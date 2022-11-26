@@ -774,6 +774,10 @@ html {
   gap: 1.75rem;
 }
 
+.gap-8 {
+  gap: 2rem;
+}
+
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
